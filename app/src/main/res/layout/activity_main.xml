@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffff0000"
+    android:weightSum="100">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:id="@+id/top_static"
+        android:layout_gravity="center">
+
+        <RelativeLayout
+            android:id="@+id/tophead"
+            android:background="#ffe65948"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical">
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/imageButton_menu"
+                android:src="@drawable/top_list"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitCenter"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:layout_alignParentLeft="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:id="@+id/imageView_movietong"
+                android:src="@drawable/top_logo"
+                android:layout_gravity="center_vertical"
+                android:layout_toRightOf="@+id/imageButton_menu"
+                android:background="@null"
+                android:paddingLeft="0dp"
+                android:layout_centerVertical="true" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/imageButton_store"
+                android:src="@drawable/top_store"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:layout_toLeftOf="@+id/imageButton_notice"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_centerVertical="true"
+                android:layout_margin="4dp" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/imageButton_notice"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/top_notice"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:layout_toLeftOf="@+id/imageButton_interactive"
+                android:layout_centerVertical="true"
+                android:layout_margin="4dp" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/imageButton_interactive"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/top_interaction"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="4dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@drawable/bar_top2"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="- 무비통에 처음 접속하셨나요? "
+            android:id="@+id/textView2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100">
+
+        <fragment
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:name="lwsoft.android.movietong.fragment_movie"
+            android:id="@+id/fragment"
+            tools:layout="@layout/fragment_movie" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

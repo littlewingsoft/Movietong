@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/thumb_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dlg_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Custom Dialog"
+        android:textSize="18dp"
+        android:layout_weight="1"
+        android:autoLink="phone|email|map|web|all" />
+
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/webView_dlg"
+        android:layout_weight="8" />
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Restart Game"
+        android:layout_weight="1" />
+
+</LinearLayout>
