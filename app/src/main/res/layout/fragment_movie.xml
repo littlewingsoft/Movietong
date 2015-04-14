@@ -112,76 +112,80 @@
                         android:paddingLeft="10dp" />
                 </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/imageView_linedot"
-                    android:background="@drawable/img_tiling"
-                    android:layout_weight="5" />
-
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/list_eventmovie">
+                    android:id="@+id/list_eventmovie"
+                    android:layout_marginTop="10dp">
 
                     <Button
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title_playingevent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:gravity="center_vertical|left"
+                        android:typeface="sans"
+                        android:textSize="25dp"
+                        android:text="@string/str_playingevent"
+                        android:textColor="#fff40061"
+                        android:paddingLeft="10dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView_linedot"
+                        android:background="@drawable/img_tiling"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
+
+                    <Button
+                        android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:text="Button 1"
-                        android:background="#ffffff00" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView2"
-                        android:background="@drawable/img_tiling"
-                        android:paddingBottom="3dp"
-                        android:layout_marginBottom="3dp" />
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg" />
 
                     <Button
-                        android:layout_width="fill_parent"
-                        android:layout_height="150dp"
-                        android:text="Button 2" />
-
-                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView3"
-                        android:background="@drawable/img_tiling"
-                        android:paddingBottom="3dp"
-                        android:layout_marginBottom="3dp" />
+                        android:layout_height="150dp"
+                        android:text="Button 2"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:layout_marginTop="2dp" />
 
                     <Button
-                        android:layout_width="fill_parent"
-                        android:layout_height="150dp"
-                        android:text="Button 3" />
-
-                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView4"
-                        android:background="@drawable/img_tiling"
-                        android:paddingBottom="3dp"
-                        android:layout_marginBottom="3dp" />
+                        android:layout_height="150dp"
+                        android:text="Button 3"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:layout_marginTop="2dp" />
 
                     <Button
-                        android:layout_width="fill_parent"
-                        android:layout_height="150dp"
-                        android:text="Button 4" />
-
-                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView5"
-                        android:background="@drawable/img_tiling"
-                        android:paddingBottom="3dp"
-                        android:layout_marginBottom="3dp" />
+                        android:layout_height="150dp"
+                        android:text="Button 4"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:layout_marginTop="2dp" />
 
                     <Button
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:text="Button 5" />
+                        android:text="Button 5"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:layout_marginTop="2dp" />
+
                 </LinearLayout>
 
             </LinearLayout>

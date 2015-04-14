@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="100">
     android:orientation="vertical"
     android:background="#ffff0000"
     android:weightSum="100">
@@ -91,7 +92,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:background="@drawable/bar_top2"
+        android:background="#ffdddddd"
         android:gravity="center_vertical">
 
         <TextView
@@ -103,9 +104,44 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재상영작"
+            android:id="@+id/button"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상영예정작"
+            android:id="@+id/button2"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이벤트"
+            android:id="@+id/button3"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공연"
+            android:id="@+id/button4"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="100">
+        android:layout_weight="81">
 
         <fragment
             android:layout_width="wrap_content"
