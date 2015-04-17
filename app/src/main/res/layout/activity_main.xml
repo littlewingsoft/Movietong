@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:background="#ffff0000">
     android:orientation="vertical"
     android:background="#ffff0000"
     android:weightSum="100">
@@ -13,7 +14,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="8"
         android:id="@+id/top_static"
         android:layout_gravity="center">
 
@@ -91,7 +92,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="6"
         android:background="#ffdddddd"
         android:gravity="center_vertical">
 
@@ -107,41 +108,75 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7">
+        android:layout_gravity="center_vertical"
+        android:layout_weight="5"
+        android:background="#ff000000">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="현재상영작"
-            android:id="@+id/button"
-            android:layout_weight="1" />
+            android:id="@+id/tab_button_0"
+            android:layout_weight="1"
+            android:background="@drawable/tab_selector"
+            android:textColor="@drawable/tab_text_selector" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#ff000000"></LinearLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="상영예정작"
-            android:id="@+id/button2"
-            android:layout_weight="1" />
+            android:id="@+id/tab_button_1"
+            android:layout_weight="1"
+            android:background="@drawable/tab_selector"
+            android:textColor="@drawable/tab_text_selector"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#ff000000" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="이벤트"
-            android:id="@+id/button3"
-            android:layout_weight="1" />
+            android:id="@+id/tab_button_2"
+            android:layout_weight="1"
+            android:background="@drawable/tab_selector"
+            android:textColor="@drawable/tab_text_selector"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#ff000000" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="공연"
-            android:id="@+id/button4"
-            android:layout_weight="1" />
+            android:id="@+id/tab_button_3"
+            android:layout_weight="1"
+            android:background="@drawable/tab_selector"
+            android:textColor="@drawable/tab_text_selector"
+            android:layout_gravity="center_vertical" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="81">
+        android:layout_weight="81"
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <fragment
             android:layout_width="wrap_content"

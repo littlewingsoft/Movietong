@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
@@ -20,8 +21,8 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-//
-public class MainActivity extends  ActionBarActivity{
+//ActionBarActivity
+public class MainActivity extends FragmentActivity {
 
     final int DIALOG_GAME_RESTART = 100;
     Dialog dialog;
@@ -33,10 +34,12 @@ public class MainActivity extends  ActionBarActivity{
         //Remove notification bar
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
-        showDialog();
+        //showDialog();
 
+        Button btn = (Button)findViewById(R.id.tab_button_0);
+        btn.setSelected(true);
     }
 
     int mStackLevel = 0;

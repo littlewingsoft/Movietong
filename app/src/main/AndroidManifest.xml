@@ -4,6 +4,8 @@
     package="lwsoft.android.movietong" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+
     <application
         android:name="lwsoft.android.movietong.util_volley"
         android:allowBackup="true"
