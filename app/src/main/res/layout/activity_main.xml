@@ -182,9 +182,9 @@
         <fragment
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:name="lwsoft.android.movietong.fragment_movie"
+            android:name="lwsoft.android.movietong.fragment_currentmovie"
             android:id="@+id/fragment"
-            tools:layout="@layout/fragment_movie" />
+            tools:layout="@layout/fragment_currentmovie" />
     </LinearLayout>
 
 
