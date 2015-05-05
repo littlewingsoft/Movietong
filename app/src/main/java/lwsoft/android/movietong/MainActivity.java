@@ -2,7 +2,9 @@ package lwsoft.android.movietong;
 
 import android.app.Dialog;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -24,6 +26,7 @@ import java.util.List;
 //ActionBarActivity
 public class MainActivity extends FragmentActivity {
 
+    public static MainActivity inst;
     final int DIALOG_GAME_RESTART = 100;
     Dialog dialog;
     @Override
@@ -37,9 +40,11 @@ public class MainActivity extends FragmentActivity {
         //getSupportActionBar().hide();
 
         //showDialog();
-
+        inst = this;
         Button btn = (Button)findViewById(R.id.tab_button_0);
         btn.setSelected(true);
+
+        goLogin();
     }
 
     int mStackLevel = 0;
@@ -80,5 +85,23 @@ public class MainActivity extends FragmentActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void goLogin(){
+        Intent it = new Intent( getApplicationContext(), intro_login.class);
+        startActivity(it);
+    }
+    public void gohome(){
+        Intent it = new Intent( getApplicationContext(), MainActivity.class);
+        startActivity( it );
+    }
+
+    public void showProgressdlg(){
+        ProgressDialog pd = ProgressDialog.show(  MainActivity.this,
+                "hey",
+                "loading",true);
+
+    }
+
+
 }
 

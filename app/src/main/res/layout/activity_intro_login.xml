@@ -1,77 +1,126 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="lwsoft.android.movietong.intro_login"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView10"
+        android:baselineAlignBottom="false"
+        android:background="@drawable/intro_img_tiling_film"
+        android:scaleType="fitXY"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:id="@+id/mainlayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="visible">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <ImageView
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageView7"
-                android:src="@drawable/title_logo"
-                android:scaleType="fitCenter"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="30dp" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView7"
+                    android:src="@drawable/title_logo"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="30dp"
+                    android:contentDescription="oh" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/str_intro_titletext"
+            android:id="@+id/textView12"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="MOVIETONG"
+            android:id="@+id/textView13"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            android:textColor="#ffe65948" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_btn_facebookconnect"
+                android:id="@+id/button_facebookconnect"
+                android:textColor="#ffffffff"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/facebook_default" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_btn_signup"
+                android:id="@+id/button_signup"
+                android:background="#ffe65948"
+                android:textColor="#ffffffff"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_btn_login"
+                android:id="@+id/button_login"
+                android:background="#ffd4d4d4"
+                android:textColor="#ff333333"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView12"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="match_parent"
+        android:id="@+id/imageView11"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/intro_img_tiling_film"
+        android:baselineAlignBottom="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="FACEBOOK Connect"
-            android:id="@+id/button"
-            android:background="@drawable/btn_bg"
-            android:backgroundTintMode="multiply"
-            android:backgroundTint="#ff3b5997"
-            android:textColor="#ffffffff" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="회원가입"
-            android:id="@+id/button2"
-            android:background="@drawable/btn_bg"
-            android:textColor="#ff333333"
-            android:backgroundTintMode="multiply"
-            android:backgroundTint="#ffe65948"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="로그인"
-            android:id="@+id/button3"
-            android:background="@drawable/btn_bg"
-            android:textColor="#ff333333"
-            android:backgroundTint="#ffe4e4e4"
-            android:backgroundTintMode="multiply" />
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

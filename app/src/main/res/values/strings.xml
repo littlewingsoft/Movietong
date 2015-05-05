@@ -8,4 +8,11 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_intro_login">intro_login</string>
+    <string name="str_btn_facebookconnect">FACEBOOK Connect</string>
+    <string name="str_btn_signup">회원가입</string>
+    <string name="str_btn_login">로그인</string>
+    <string name="str_intro_titletext">예고편만 봐도 포인트가 쌓이는 \n 신개념 앱</string>
+    <string name="str_hint_pw">비밀번호</string>
+    <string name="str_hint_email">이메일 주소</string>
+    <string name="str_hint_pwcheck">비밀번호 확인</string>
 </resources>

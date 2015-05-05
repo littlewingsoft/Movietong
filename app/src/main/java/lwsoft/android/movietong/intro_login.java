@@ -1,9 +1,14 @@
 package lwsoft.android.movietong;
 
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class intro_login extends ActionBarActivity {
@@ -13,7 +18,31 @@ public class intro_login extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_login);
         getSupportActionBar().hide();
+        setbtn();
+    }
 
+    protected void showdialog_signup(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        DialogFragment newFragment = dialog_signup.newInstance();
+        newFragment.setShowsDialog(true);
+        newFragment.show( ft, "dialog");
+    }
+    protected  void setbtn(){
+        Button btn = (Button)findViewById(R.id.button_signup);
+        btn.setOnClickListener(
+            new Button.OnClickListener() {
+                public void onClick(View v) {
+                    showdialog_signup();
+                }
+
+
+        } );
     }
 
     @Override

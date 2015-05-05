@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pressed">#FFB3CA6F</color>
+    <color name="nonpressed">#FF3B5997</color>
+    <color name="facebook_default">#FF3B5997</color>
+</resources>
