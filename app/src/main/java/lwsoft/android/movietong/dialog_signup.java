@@ -1,6 +1,7 @@
 package lwsoft.android.movietong;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -26,19 +27,43 @@ import static lwsoft.android.movietong.MainActivity.*;
  * A simple {@link Fragment} subclass.
  */
 public class dialog_signup extends DialogFragment {
+    intro_login mParent;
     protected View thisParentView;
     protected ProgressDialog mPd;
     static protected dialog_signup dialogFragment;
-    static public dialog_signup  newInstance() {
+    static public dialog_signup  newInstance() {//intro_login _mParent
         if( dialogFragment == null )
         {
-            dialogFragment = new dialog_signup();
+            dialogFragment = new dialog_signup();//_mParent
+            /*
+            Bundle args = new Bundle();
+            args.(ARG_PARAM1, param1);
+            args.putString(ARG_PARAM2, param2);
+            fragment.setArguments(args);
+            */
             return dialogFragment;
         }
 
         return dialogFragment;
 
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            //intro_login a = (intro_login )getArguments().get("parentActivity");
+            //mParent = a;
+
+            //mParam1 = getArguments().getString(ARG_PARAM1);
+            //mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+/*
+    public dialog_signup(intro_login m){
+        //mParent = m;
+    }*/
+
 /*
     public void showDialog() {
         // Create the fragment and show it as a dialog.
@@ -49,7 +74,7 @@ public class dialog_signup extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        mParent = (intro_login)getActivity();
         getDialog().hide();// setTitle("My Dialog Title");
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
@@ -71,13 +96,8 @@ public class dialog_signup extends DialogFragment {
 
                 //MainActivity.inst.showProgressdlg();
                 //send http post
-                send_signup( email,pw );
-                if( mPd != null)
-                    mPd.dismiss();
+                mParent.send_signup( email,pw );
 
-                mPd = ProgressDialog.show( dialogFragment.getActivity() ,
-                        "",
-                        "wait a minute",true);
 
             }
         });
@@ -97,23 +117,7 @@ public class dialog_signup extends DialogFragment {
         return v;
     }
 
-    void send_signup( String email, String pw ){
 
-        //send http post
-        //callback
-        new Handler().postDelayed(new Runnable() { // new Handler and Runnable
-            @Override
-            public void run() {
-                mPd.dismiss();
-                MainActivity.inst.gohome();
-
-
-            }}
-
-            ,1000);
-
-
-        }
 
 
     }

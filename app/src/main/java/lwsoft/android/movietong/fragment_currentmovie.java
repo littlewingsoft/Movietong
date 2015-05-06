@@ -1,5 +1,6 @@
 package lwsoft.android.movietong;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
@@ -9,14 +10,26 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 
 /**
@@ -176,30 +189,27 @@ public class fragment_currentmovie extends Fragment {
             }
         });
 
-       // setupRootCurrentEvent(v);
+        setupRootCurrentEvent(v);
 
         return v;
     }
     private void setupRootCurrentEvent(View rootView){
-        LinearLayout root_currentEvent;
-        root_currentEvent = (LinearLayout)rootView.findViewById(R.id.root_currentEvent);
-        root_currentEvent.removeAllViews();
+        LinearLayout container;
+        container= (LinearLayout)rootView.findViewById(R.id.root_currentEvent);
 
-        //root_currentEvent.addView(  );
-        ViewGroup vg = (ViewGroup )root_currentEvent.getParent();
-        //mHeaderView = mInflater.inflate(R.layout.home_list_header,mTableListView, false);
+        View item = container.findViewById( R.id.current_item_0 );
+        for (int i = 0; i < 5; i++) {
+            item_currentevent ic = new item_currentevent(this.getActivity());
+            android.view.ViewGroup.LayoutParams params = item.getLayoutParams();
 
-        View.inflate( myContext,
-                R.layout.item_currentevent,
-                vg );
-        //View hiddenInfo = getLayoutInflater(new Bundle()).inflate(R.layout.item_currentevent, vg, false);
-        //vg.addView(hiddenInfo);
-/*
-        hiddenInfo = getLayoutInflater(new Bundle()).inflate(R.layout.item_currentevent, vg, false);
-        vg.addView(hiddenInfo);
+            ic.setLayoutParams(params);
+            ic.setPadding(0,0,0,10 );
+            ic.setId(item.getId() + i );
+            container.addView(ic, i);//, item.getLayoutParams()
 
-        hiddenInfo = getLayoutInflater(new Bundle()).inflate(R.layout.item_currentevent, vg, false);
-        vg.addView(hiddenInfo);
-*/
+        }
+        container.removeView(item);
+
+
     }
 }

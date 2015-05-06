@@ -21,7 +21,8 @@
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="300dp">
+                    android:layout_height="300dp"
+                    android:visibility="visible">
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/ViewPager_poster"
@@ -154,15 +155,16 @@
                             android:id="@+id/current_item_0"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center_vertical" />
 
                         <Button
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="220dp"
                             android:text="Button 1"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:background="@drawable/menu_bg" />
+                            android:background="@drawable/menu_bg"
+                            android:visibility="gone" />
 
                         <Button
                             android:layout_width="match_parent"
@@ -171,7 +173,8 @@
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp" />
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone" />
 
                         <Button
                             android:layout_width="match_parent"
@@ -180,7 +183,8 @@
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp" />
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone" />
 
                         <Button
                             android:layout_width="match_parent"
@@ -189,7 +193,8 @@
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp" />
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone" />
 
                         <Button
                             android:layout_width="match_parent"
@@ -198,7 +203,8 @@
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp" />
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone" />
 
 
 

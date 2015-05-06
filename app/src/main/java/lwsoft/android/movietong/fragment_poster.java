@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -22,8 +23,10 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
     String url_poster;
     //ImageView mImageView;
     NetworkImageView mImageView;
+
     public void onClick(View v){
         Log.i("tag_", "oh click! + "  + url_poster);
+        Toast.makeText(v.getContext(),url_poster,Toast.LENGTH_SHORT ).show();
     }
 
     static fragment_poster newInstance(String url ) {
@@ -44,6 +47,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         url_poster= getArguments() != null ? getArguments().getString("url_poster") : "__none__";
+
     }
 
     @Override
@@ -56,7 +60,9 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
         ((TextView)tv).setText("url : " + url_poster);
 
         ImageLoader imageLoader = util_volley.getInstance().getImageLoader();
-        mImageView.setImageUrl( url_poster, imageLoader);
+        mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        mImageView.setImageUrl(url_poster, imageLoader);
+        v.setOnClickListener(this);
         return v;
     }
 

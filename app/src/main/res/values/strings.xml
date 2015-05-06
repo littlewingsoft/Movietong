@@ -15,4 +15,9 @@
     <string name="str_hint_pw">비밀번호</string>
     <string name="str_hint_email">이메일 주소</string>
     <string name="str_hint_pwcheck">비밀번호 확인</string>
+    <string name="title_activity_activity_manager">activity_manager</string>
+    <string name="str_login">LOGIN</string>
+    <string name="str_quitmessage">무비통을 종료하시겠습니까?</string>
+    <string name="str_yes">예</string>
+    <string name="str_no">아니오</string>
 </resources>
