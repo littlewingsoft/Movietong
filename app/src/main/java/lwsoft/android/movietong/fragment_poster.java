@@ -1,6 +1,8 @@
 package lwsoft.android.movietong;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by gilbert on 2015-04-07.
  */
@@ -21,22 +26,47 @@ import com.android.volley.toolbox.NetworkImageView;
 public class fragment_poster extends Fragment implements View.OnClickListener {
 
     String url_poster;
+    String objectid ;
     //ImageView mImageView;
     NetworkImageView mImageView;
 
+   /* private Handler mHandler=new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            Log.i( "tag_", "url_poster:" + url_poster );
+            View v = (View )msg.obj;
+            mImageView = (NetworkImageView)v.findViewById(R.id.imageView);
+            ImageLoader imageLoader = util_volley.getInstance().getImageLoader();
+            mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            mImageView.setImageUrl(url_poster, imageLoader);
+
+            //mImageView.setDefaultImageResId( R.drawable.loading );
+            switch( msg.what ){
+                case 0:
+
+                    break;
+            }
+        }
+
+    };*/
+
     public void onClick(View v){
-        Log.i("tag_", "oh click! + "  + url_poster);
-        Toast.makeText(v.getContext(),url_poster,Toast.LENGTH_SHORT ).show();
+        Log.i("tag_", "oh click! + "  + objectid);
+        Toast.makeText(v.getContext(),objectid,Toast.LENGTH_SHORT ).show();
     }
 
-    static fragment_poster newInstance(String url ) {
+    static fragment_poster newInstance( JSONObject jo) throws JSONException
+    {
         fragment_poster f = new fragment_poster();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
+        String url = jo.getString("movie_photo1");
+        String objectid = jo.getString("movie_objectid");
+        args.putString("objectid", objectid );
         args.putString("url_poster", url);
         f.setArguments(args);
-
         return f;
     }
 
@@ -46,19 +76,22 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        url_poster= getArguments() != null ? getArguments().getString("url_poster") : "__none__";
+        Bundle b = getArguments();
+        if( b != null )
+        {
+            url_poster= b.getString("url_poster") ;
+            objectid = b.getString("objectid");
+            //Log.i("tag_", "fragment_poster newInstance : "  + url_poster );
+        }
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i("tag_", "onCreateView : "  + url_poster);
         View v = inflater.inflate(R.layout.fragment_poster, container, false);
         mImageView = (NetworkImageView)v.findViewById(R.id.imageView);
-
-        View tv = v.findViewById(R.id.textView);
-        ((TextView)tv).setText("url : " + url_poster);
-
         ImageLoader imageLoader = util_volley.getInstance().getImageLoader();
         mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         mImageView.setImageUrl(url_poster, imageLoader);
@@ -79,7 +112,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
 
         // 뷰에 데이터를 넣는 작업 등을 할 추가할 수 있음
         //download http url, and set image!!!
-
+        Log.i("tag_", "fragment_poster onActivityCreated: "  );
 
 
 /*
@@ -116,7 +149,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
                 }
             }
         });*/
-        Log.i( "tag_", "url:" + url_poster);
+
 
     }
 

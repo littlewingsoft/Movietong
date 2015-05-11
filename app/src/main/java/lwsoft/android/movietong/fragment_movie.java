@@ -34,11 +34,11 @@ public class fragment_movie extends Fragment {
             super(fm);
             list_fragment = new ArrayList();
 
-            list_fragment.add(fragment_poster.newInstance(URL_IMAGE));
+/*            list_fragment.add(fragment_poster.newInstance(URL_IMAGE));
             list_fragment.add(fragment_poster.newInstance("http://cafelog.zz.mu/poster/avengers.jpg"));
             list_fragment.add( fragment_poster.newInstance("http://cafelog.zz.mu/poster/%EB%A0%88%EB%AF%B8%EC%A0%9C%EB%9D%BC%EB%B8%94.jpg") );
             list_fragment.add(fragment_poster.newInstance("http://cafelog.zz.mu/poster/%EA%B0%90%EC%8B%9C%EC%9E%90%EB%93%A4.jpg"));
-            list_fragment.add( fragment_poster.newInstance("http://cafelog.zz.mu/poster/%EC%8B%A0%EC%84%B8%EA%B3%84.jpg") );
+            list_fragment.add( fragment_poster.newInstance("http://cafelog.zz.mu/poster/%EC%8B%A0%EC%84%B8%EA%B3%84.jpg") );*/
         }
 
         @Override

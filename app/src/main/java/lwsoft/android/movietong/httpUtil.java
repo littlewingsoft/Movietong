@@ -40,7 +40,7 @@ public class httpUtil {
 
         HttpPost request = makeHttpPost( id, pwd, url ) ;//"http://www.shop-wiz.com/android_post.php"
 
-        // Get 规侥老版快
+
         //HttpGet request = makeHttpGet( id, pwd, "http://www.shop-wiz.com/android_post.php" ) ;
 
         HttpClient client = new DefaultHttpClient() ;
@@ -49,7 +49,7 @@ public class httpUtil {
         return result ;
     }
 
-    //Post 规侥老版快
+    //post
     private HttpPost makeHttpPost(String user_id, String user_pwd, String url) {
         // TODO Auto-generated method stub
 
@@ -61,7 +61,7 @@ public class httpUtil {
         return request ;
     }
 
-    //Get 规侥老版快
+    //get
     private HttpGet makeHttpGet(String user_id, String user_pwd, String url) {
         // TODO Auto-generated method stub
         Vector<NameValuePair> nameValue = new Vector<NameValuePair>() ;
