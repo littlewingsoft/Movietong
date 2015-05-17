@@ -51,6 +51,7 @@ public class dialog_quit extends DialogFragment {
         if( mInst == null )
         {
             mInst = new dialog_quit();
+            //mInst.setStyle( DialogFragment.STYLE_NO_FRAME,0 );
         }
         /*
         Bundle args = new Bundle();
@@ -91,6 +92,7 @@ public class dialog_quit extends DialogFragment {
         mParentActivity = getActivity();
         getDialog().hide();// setTitle("My Dialog Title");
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         View mParentview =inflater.inflate(R.layout.dialog_quit, container, false);
 
 

@@ -37,7 +37,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="조선명탐정:사라진 놉의 딸"
                 android:id="@+id/currentMovie_textView_title"
-                android:layout_marginLeft="4dp" />
+                android:layout_marginLeft="4dp"
+                android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,7 +46,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="3월 18일 개봉"
                 android:id="@+id/currentMovie_textView_day"
-                android:layout_marginLeft="4dp" />
+                android:layout_marginLeft="4dp"
+                android:textSize="11dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,7 +55,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="128분 청소년관람불가"
                 android:id="@+id/currentMovie_textView_grade"
-                android:layout_marginLeft="4dp" />
+                android:layout_marginLeft="4dp"
+                android:textSize="11dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +64,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="장르: 액션,범죄,스릴러"
                 android:id="@+id/currentMovie_textView_genre"
-                android:layout_marginLeft="4dp" />
+                android:layout_marginLeft="4dp"
+                android:textSize="11dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -124,7 +128,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="1.예고편 시청시 포인트와 시사회권 2매지급(총50매)"
                 android:id="@+id/textView8"
-                android:textSize="15dp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,7 +136,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="2.영화 공유하면 추가포인트 지급"
                 android:id="@+id/textView9"
-                android:textSize="15dp" />
+                android:textSize="13dp" />
         </LinearLayout>
 
         <LinearLayout

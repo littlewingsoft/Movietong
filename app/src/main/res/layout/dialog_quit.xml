@@ -1,16 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/thumb_bg"
     android:gravity="center"
-    android:minHeight="200dp"
-    android:minWidth="400dp">
+    android:minHeight="150dp"
+    android:minWidth="280dp"
+    android:background="@drawable/thumb_bg">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:layout_weight="5">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -26,42 +27,44 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:text="@string/str_quitmessage"
-            android:textSize="20dp" />
+            android:textSize="14dp"
+            android:textColor="#ff252424" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal">
+        android:layout_height="0dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_weight="5">
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/str_no"
             android:id="@+id/quit_button_no"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:background="#ff666666"
             android:textColor="#ffffffff"
             android:typeface="normal"
-            android:layout_marginBottom="30dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/str_yes"
             android:id="@+id/quit_button_yes"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:background="#ffe65948"
             android:textColor="#ffffffff"
             android:typeface="normal"
-            android:layout_marginBottom="30dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
     </LinearLayout>
 
 </LinearLayout>
