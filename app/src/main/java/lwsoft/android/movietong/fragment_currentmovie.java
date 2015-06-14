@@ -1,8 +1,7 @@
 package lwsoft.android.movietong;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,48 +12,35 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.ref.WeakReference;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link fragment_currentmovie.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link fragment_currentmovie#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class fragment_currentmovie extends Fragment {
 
     private View mView;
+    private LinearLayout mViewEvent;
+    private LinearLayout mViewMovie;
     private FragmentActivity myContext;
     private MyAdapter mAdapter;
     private ViewPager mPager;
+
     //public static final String URL_IMAGE = "http://api.androidhive.info/volley/volley-image.jpg";
 
     private Handler mHandler;
@@ -189,6 +175,7 @@ public class fragment_currentmovie extends Fragment {
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
+                super.handleMessage(msg);
                 try{
                     switch( msg.what ){
                         case 0:
@@ -197,19 +184,34 @@ public class fragment_currentmovie extends Fragment {
                             mAdapter = new MyAdapter( fragManager, (JSONObject)msg.obj );
                             mPager = (ViewPager) mView.findViewById(R.id.ViewPager_poster);
                             mPager.setAdapter(mAdapter);
-                            retriveNewMovieList();
                         }
                         break;
 
                         case 1: //current movie list
                         {
-                            setupRootCurrentEvent( mView,(JSONObject)msg.obj );
+                            Log.i("tag_", "current event movie list");
+                            setupRootCurrentEvent(mViewEvent, (JSONObject) msg.obj);
                         }
                             break;
+
+                        case 2: {
+                            Log.i("tag_", "current movie list");
+
+                            try {
+                                setupRootCurrentMovie(mViewMovie, (JSONObject) msg.obj);
+                            }catch( JSONException je ){
+                                Log.i("tag_", je.getMessage());
+                                je.printStackTrace();
+                            }
+                        }
                     }
 
                 }catch(Exception e){
-                    e.printStackTrace();
+                    StringWriter sw = new StringWriter();
+                    e.printStackTrace(new PrintWriter(sw));
+                    String exceptionAsStrting = sw.toString();
+
+                    Log.e( "tag_", exceptionAsStrting);
                 }
 
                 //Log.d("tag_", "handler call:" + (String) msg.obj );
@@ -223,21 +225,30 @@ public class fragment_currentmovie extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_currentmovie, container, false);
         mView= v;
+        mViewEvent = (LinearLayout)mView.findViewById( R.id.root_currentEvent );
+        mViewMovie = (LinearLayout)mView.findViewById( R.id.root_currentMovie );
 /*        FragmentManager fragManager = myContext.getSupportFragmentManager();
         mAdapter = new MyAdapter( fragManager );
         mPager = (ViewPager) v.findViewById(R.id.ViewPager_poster);
         mPager.setAdapter(mAdapter);*/
 
+        ProgressDialog mPd = ProgressDialog.show(getActivity(),"wait","요청중"  );
+
         retriveNewMoviePoster();
+        retriveNewEventList();
+        retriveNewMovieList();
+
+
+        mPd.dismiss();
 
         ImageButton left = (ImageButton)v.findViewById(R.id.imageButton_left);
-        left.setOnClickListener(new View.OnClickListener(){
+        left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int pos = mPager.getCurrentItem()-1;
-                if( pos < 0 )
-                    pos = mAdapter.getCount()-1;
-                mPager.setCurrentItem( pos, true );
+                int pos = mPager.getCurrentItem() - 1;
+                if (pos < 0)
+                    pos = mAdapter.getCount() - 1;
+                mPager.setCurrentItem(pos, true);
             }
         });
 
@@ -255,15 +266,38 @@ public class fragment_currentmovie extends Fragment {
 
         return v;
     }
-    private void setupRootCurrentEvent(View rootView, JSONObject jo ) throws  JSONException{
-        LinearLayout container;
-        container= (LinearLayout)rootView.findViewById(R.id.root_currentEvent);
+    private void setupRootCurrentEvent(LinearLayout rootView, JSONObject jo ) throws  JSONException{
+        LinearLayout container = rootView;
+        //container= (LinearLayout)rootView.findViewById(R.id.root_currentEvent);
 
-        View item = container.findViewById( R.id.current_item_0 );
+        View item = container.findViewById( R.id.currentEvent_item_0 );
         JSONArray ja = jo.getJSONArray("postercnt");
         for (int i = 0; i < ja.length(); i++) {
             JSONObject tmp = ja.getJSONObject(i);
-            item_currentevent ic = new item_currentevent(this.getActivity(), tmp );
+            citem_currentevent ic = new citem_currentevent(this.getActivity() );
+            ic.setData(tmp);
+            android.view.ViewGroup.LayoutParams params = item.getLayoutParams();
+
+            ic.setLayoutParams(params);
+            ic.setPadding(0, 0, 0, 10);
+            ic.setId(item.getId() + i);
+            container.addView(ic, i);//, item.getLayoutParams()
+
+        }
+        container.removeView(item);
+    }
+
+    private void setupRootCurrentMovie(LinearLayout rootView, JSONObject jo ) throws  JSONException{
+       LinearLayout container = rootView;
+       //container= (LinearLayout)rootView.findViewById(R.id.root_currentMovie);
+
+        View item = container.findViewById( R.id.currentMovie_item_0 );
+        //LinearLayout container = (LinearLayout)item.getParent();
+        JSONArray ja = jo.getJSONArray("postercnt");
+        for (int i = 0; i < ja.length(); i++) {
+            JSONObject tmp = ja.getJSONObject(i);
+            citem_currentmovie ic = new citem_currentmovie(this.getActivity() );
+            ic.setData(tmp);
             android.view.ViewGroup.LayoutParams params = item.getLayoutParams();
 
             ic.setLayoutParams(params);
@@ -333,20 +367,178 @@ public class fragment_currentmovie extends Fragment {
     }
 
     public void retriveNewMoviePoster(){
-        //url_movie
-
         final String url_movieposter = "http://www.movietong.co.kr/Select_MovieTongposter.asp";
         String[] params={ url_movieposter, "0" };
-        new task_http_retrive_newmovie().execute( params);
-
+        //new http_get_poster().execute( params);
+        new httpUtil_get( this.getActivity(), mHandler).execute( params);
+    }
+    public void retriveNewEventList(){
+        final String url_listitem = "http://www.movietong.co.kr/Select_MovieTongMovieList.asp?movietype=1&topcnt=7";
+        String[] params={ url_listitem , "1" };
+        new httpUtil_get( this.getActivity(), mHandler).execute( params);
+        //new http_get_event().execute(params);
     }
 
     public void retriveNewMovieList(){
-        final String url_listitem = "http://www.movietong.co.kr/Select_MovieTongMovieList.asp?movietype=1&topcnt=7";
-        String[] params={ url_listitem , "1" };
-        new task_http_retrive_newmovie().execute( params );
+        final String url_listitem = "http://www.movietong.co.kr/Select_MovieTongMovieList.asp?movietype=2&topcnt=7";
+        String[] params={ url_listitem , "2" };
+        new httpUtil_get( this.getActivity(), mHandler).execute( params);
+        //new http_get_movie().execute(params);
     }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+    public class http_get_poster extends AsyncTask<String,Void,JSONObject> {
+        private ProgressDialog mPd=null;
 
+        public http_get_poster (){  }
 
+        @Override
+        protected void onPreExecute (){
+            mPd = ProgressDialog.show(getActivity(),"wait","요청중"  );
+        }
+
+        @Override
+        protected JSONObject doInBackground(String ... params) {
+            JSONObject jo=null;
+            try
+            {
+                String my_url = params[0];
+                HttpGet request = new HttpGet( my_url ) ;
+                HttpClient client = new DefaultHttpClient() ;
+                ResponseHandler<String> reshandler = new BasicResponseHandler() ;
+                String jsonData = client.execute(request, reshandler);
+                jo=new JSONObject(jsonData);
+                Log.i("tag_", "send " + my_url);
+            }
+            catch (Exception e)
+            {
+                StringWriter sw = new StringWriter();
+                e.printStackTrace(new PrintWriter(sw));
+                String exceptionAsStrting = sw.toString();
+
+                Log.e("tag_", exceptionAsStrting);
+            }
+            return jo;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jo) {
+            super.onPostExecute(jo);
+            if(jo!= null){
+                Log.i("tag_", "onPostExcute:  " + jo.toString()  );
+                FragmentManager fragManager = myContext.getSupportFragmentManager();
+                mAdapter = new MyAdapter( fragManager, jo );
+                mPager = (ViewPager) mView.findViewById(R.id.ViewPager_poster);
+                mPager.setAdapter(mAdapter);
+
+                //if( mPd != null && mPd.isShowing() )
+                 //   mPd.dismiss();
+                //retriveNewEventList();
+
+                mPd.dismiss();
+            }
+        }
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////
+    public class http_get_event extends AsyncTask<String,Void,JSONObject> {
+        //private ProgressDialog mPd=null;
+        public http_get_event(){  }
+
+        @Override
+        protected JSONObject doInBackground(String ... params) {
+            JSONObject jo=null;
+            try
+            {
+                String my_url = params[0];
+                HttpGet request = new HttpGet( my_url ) ;
+                HttpClient client = new DefaultHttpClient() ;
+                ResponseHandler<String> reshandler = new BasicResponseHandler() ;
+                String jsonData = client.execute(request, reshandler);
+                jo=new JSONObject(jsonData);
+                Log.i("tag_", "send " + my_url);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return jo;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jo) {
+            super.onPostExecute(jo);
+            if(jo!= null){
+                try {
+                    Log.i("tag_", "onPostExcute:  " + jo.toString());
+                    setupRootCurrentEvent(mViewEvent, jo);
+                   // retriveNewMovieList();
+                }catch(Exception e){
+                    StringWriter sw = new StringWriter();
+                    e.printStackTrace(new PrintWriter(sw));
+                    String exceptionAsStrting = sw.toString();
+
+                    Log.e( "tag_", exceptionAsStrting);
+                }
+                Log.i("tag_", "onPostExcute:  " + jo.toString());
+
+            }
+        }
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////
+public class http_get_movie extends AsyncTask<String,Void,JSONObject> {
+    public http_get_movie(){  }
+
+    @Override
+    protected JSONObject doInBackground(String ... params) {
+
+        JSONObject jo=null;
+        try
+        {
+            //Thread.sleep(3000);
+            String my_url = params[0];
+            HttpGet request = new HttpGet( my_url ) ;
+            HttpClient client = new DefaultHttpClient() ;
+            ResponseHandler<String> reshandler = new BasicResponseHandler() ;
+            String jsonData = client.execute(request, reshandler);
+            jo=new JSONObject(jsonData);
+            Log.i("tag_", "send " + my_url);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return jo;
+    }
+
+    @Override
+    protected void onPostExecute(JSONObject jo) {
+        super.onPostExecute(jo);
+        if(jo!= null){
+            try {
+                Log.i("tag_", "onPostExcute:  " + jo.toString());
+                setupRootCurrentMovie( mViewMovie, jo);
+            }catch(Exception e){
+                StringWriter sw = new StringWriter();
+                e.printStackTrace(new PrintWriter(sw));
+                String exceptionAsStrting = sw.toString();
+
+                Log.e( "tag_", exceptionAsStrting);
+            }
+            Log.i("tag_", "onPostExcute:  " + jo.toString());
+
+        }
+    }
+    @Override
+    protected void onCancelled() {
+        super.onCancelled();
+    }
+}
 }

@@ -1,8 +1,9 @@
 package lwsoft.android.movietong;
 
-
-import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,7 +13,19 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import java.util.Vector;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,39 +34,43 @@ import android.widget.EditText;
  */
 public class dialog_login extends DialogFragment {
     private intro_login mParent;
+    //private ProgressDialog mPd;
     private View thisParentView;
+    protected Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            try {
+                JSONObject jo = (JSONObject)msg.obj;
+                Log.i("tag_", jo.toString());
+                int retVal = jo.getInt("retVal");
 
+                if( retVal == 1){ // success
+                    activity_manager.inst.mObjectID = jo.getString("account_objectid");
+                    activity_manager.inst.mEmail = jo.getString("account_id");
+                    //mPd.dismiss();
+                    activity_manager.inst.saveAccount();
+                    dismiss();
+                    mParent.goMain();
+
+                }
+                else //fail
+                {
+                    ((TextView) thisParentView.findViewById(R.id.login_textView_email_comment)).setText("아이디가 존재하지 않거나 비밀번호가 틀립니다.");
+                }
+
+            }catch (Exception e){
+                Log.i( "tag_", e.getMessage() );
+            }
+        }
+    };
 
     static protected dialog_login dialogFragment;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment dialog_login.
-     */
     // TODO: Rename and change types and number of parameters
     public static dialog_login newInstance() {
-        //String param1;
-        //String param2;
+
         if( dialogFragment  == null ) {
             dialogFragment = new dialog_login();
         }
-        //Bundle args = new Bundle();
-        //args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
-        //fragment.setArguments(args);
         return dialogFragment  ;
     }
 
@@ -64,10 +81,6 @@ public class dialog_login extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -82,6 +95,17 @@ public class dialog_login extends DialogFragment {
         View v = inflater.inflate(R.layout.dialog_login, container, false);
 
         thisParentView = v;
+        if( activity_manager.inst.hasAccount() )
+        {
+            activity_manager.inst.restoreAccount();
+            ((EditText) thisParentView.findViewById(R.id.login_editText_email)).setText(activity_manager.inst.mEmail);
+            ((EditText) thisParentView.findViewById(R.id.login_editText_pw)).setText(activity_manager.inst.mPw);
+        }else {
+            ((EditText) thisParentView.findViewById(R.id.login_editText_email)).setText("");
+            ((EditText) thisParentView.findViewById(R.id.login_editText_pw)).setText("");
+        }
+        ((TextView) thisParentView.findViewById(R.id.login_textView_email_comment)).setText("");
+        ((TextView) thisParentView.findViewById(R.id.login_textView_pw_comment)).setText("");
 
         Button btn_signup=(Button)v.findViewById(R.id.login_button_ok);
         btn_signup.setOnClickListener(new Button.OnClickListener() {
@@ -93,12 +117,23 @@ public class dialog_login extends DialogFragment {
 
                 et = (EditText) thisParentView.findViewById(R.id.login_editText_pw);
                 String pw = et.getText().toString();
-                Log.i("_tag", email + " : " + pw);
-                dialogFragment.dismiss();
+                //Log.i("_tag", email + " : " + pw);
+
+                if (email.isEmpty()) {
+                    ((TextView) thisParentView.findViewById(R.id.login_textView_email_comment)).setText("이메일을 입력해 주세요");
+                    return;
+                }
+
+                if (pw.isEmpty()) {
+                    ((TextView) thisParentView.findViewById(R.id.login_textView_pw_comment)).setText("비밀번호를 입력해 주세요");
+                    return;
+                }
+
+                send_login(email, pw);
 
                 //MainActivity.inst.showProgressdlg();
                 //send http post
-                mParent.send_login(email, pw);
+                //mParent.send_login(email, pw);
 
 
             }
@@ -108,5 +143,75 @@ public class dialog_login extends DialogFragment {
     }
 
 
+    //deprecated
+    private class httpTask extends AsyncTask<String,Void,String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            String result="";
+            try
+            {
+                String my_url = "asdf";
+                HttpGet request = new HttpGet( my_url ) ;
+                HttpClient client = new DefaultHttpClient() ;
+                ResponseHandler<String> reshandler = new BasicResponseHandler() ;
+
+                result = client.execute(request, reshandler);
+                Log.i("tag_", result);
+                JSONObject jo=new JSONObject(result);
+
+                Log.i("tag_", "usernickname: "+ jo.getString("usernickname") );
+                Log.i("tag_", "userpoint: "+ jo.getInt("userpoint"));
+                Log.i("tag_", "usersex: "+ jo.getString("usersex"));
+                Log.i("tag_", "userage: "+ jo.getInt("userage"));
+                Log.i("tag_", "userarea: "+ jo.getString("userarea"));
+                Log.i("tag_", "userrecommender: "+ jo.getString("userrecommender"));
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            if(result != null){
+                Log.d("ASYNC", "result = " + result);
+            }
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+
+
+    }
+
+    void send_login(String e, String p ){
+
+        //mPd = ProgressDialog.show( getActivity().getBaseContext() ,"wait" ,"wait wait" );
+        activity_manager.inst.mEmail = e;
+        activity_manager.inst.mPw = p;
+        Vector<NameValuePair> nameValue = new Vector<NameValuePair>() ;
+        nameValue.add(new BasicNameValuePair("accid", e)) ;
+        nameValue.add( new BasicNameValuePair( "pw", p) ) ;
+        String url = "http://www.movietong.co.kr/Select_Login.asp"+ "?" + URLEncodedUtils.format(nameValue, null) ;
+        String[] params={url , "0" };
+        new httpUtil_get( this.getActivity(), mHandler).execute(params);
+    }
+
+    void send_accinfo(String account_objectid ){
+        Vector<NameValuePair> nameValue = new Vector<NameValuePair>() ;
+        nameValue.add(new BasicNameValuePair("account_objectid", account_objectid)) ;//"5a80e08c-5b97-4936-8694-cc6912f2e00c"
+        String url = "http://www.movietong.co.kr/Select_AccountInfo.asp"+ "?" + URLEncodedUtils.format(nameValue, null) ;
+        String[] params={url};
+        new httpUtil_get(this.getActivity(), mHandler).execute(params);
+    }
 
 }

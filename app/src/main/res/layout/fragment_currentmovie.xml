@@ -118,7 +118,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/list_eventmovie"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    android:contentDescription="event movie">
 
                     <Button
                         android:layout_width="match_parent"
@@ -149,68 +151,68 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/root_currentEvent"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp">
+                        android:layout_marginRight="8dp"
+                        android:contentDescription="root current event">
 
-                        <lwsoft.android.movietong.item_currentevent
-                            android:id="@+id/current_item_0"
+                        <lwsoft.android.movietong.citem_currentevent
+                            android:id="@+id/currentEvent_item_0"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
                             android:layout_gravity="center_vertical" />
 
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="220dp"
-                            android:text="Button 1"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="@drawable/menu_bg"
-                            android:visibility="gone" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:text="Button 2"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp"
-                            android:visibility="gone" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:text="Button 3"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp"
-                            android:visibility="gone" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:text="Button 4"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp"
-                            android:visibility="gone" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:text="Button 5"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="@drawable/menu_bg"
-                            android:layout_marginTop="2dp"
-                            android:visibility="gone" />
-
-
-
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list_movie"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    android:contentDescription="playing movie ">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:gravity="center_vertical|left"
+                        android:typeface="sans"
+                        android:textSize="25dp"
+                        android:text="@string/str_boxofficetop7"
+                        android:textColor="#fff40061"
+                        android:paddingLeft="10dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView17"
+                        android:background="@drawable/img_tiling"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/root_currentMovie"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:contentDescription="root current Movie">
+                        <lwsoft.android.movietong.citem_currentmovie
+                            android:id="@+id/currentMovie_item_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

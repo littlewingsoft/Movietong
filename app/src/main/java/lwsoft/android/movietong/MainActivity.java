@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -25,6 +26,7 @@ import java.util.List;
 
 //ActionBarActivity
 public class MainActivity extends FragmentActivity {
+
 
     public static MainActivity inst;
     //final int DIALOG_GAME_RESTART = 100;
@@ -65,6 +67,8 @@ public class MainActivity extends FragmentActivity {
         Button btn3 = (Button)findViewById(R.id.tab_button_3);
         btn3.setOnClickListener(mClickListener);
 
+        //must go on
+        proc_firstconnect();
 
     }
 
@@ -76,6 +80,7 @@ public class MainActivity extends FragmentActivity {
     };
 
     int mStackLevel = 0;
+    //test??
     void showDialog() {
         mStackLevel++;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -87,7 +92,7 @@ public class MainActivity extends FragmentActivity {
 
         DialogFragment newFragment = YesNoDlg.newInstance();
         newFragment.setShowsDialog(true);
-        newFragment.show( ft, "dialog");
+        newFragment.show(ft, "dialog");
     }
 
 
@@ -114,15 +119,56 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-    public void showProgressdlg(){
-        ProgressDialog pd = ProgressDialog.show(  MainActivity.this,
-                "hey",
-                "loading",true);
-
+    public void proc_firstconnect(){
+        SharedPreferences pref = getSharedPreferences("inputprofile", MODE_PRIVATE);
+        if( pref.contains("SecondConnect") == false )
+        showFirstConnectDlg();
     }
 
+    public void proc_inputprofile(){
+        SharedPreferences pref = getSharedPreferences("inputprofile", MODE_PRIVATE);
+
+        //if input profile
+        showInputProfileDlg();
+
+        //SharedPreferences.Editor editor = pref.edit();
+//        editor.putString(pref_mEmail, mEmail);
+ //       editor.putString(pref_mPw, mPw);
+        //editor.commit();
+    }
+
+    public void showFirstConnectDlg(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        //ft.commit();
+
+        DialogFragment newFragment = dialog_firstconnect.newInstance();
+        newFragment.setShowsDialog(true);
+        newFragment.show(ft, "dialog");
+    }
+
+    public void showInputProfileDlg(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        //ft.addToBackStack(null);
+
+
+        Fragment d = getSupportFragmentManager().findFragmentByTag("dialog");
+
+        DialogFragment newFragment = dialog_inputprofile.newInstance();
+        newFragment.setShowsDialog(true);
+        newFragment.show(ft, "dialog");
+
+
+    }
 
     protected void showdialog_quit(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -141,6 +187,8 @@ public class MainActivity extends FragmentActivity {
     public void onBackPressed() {
         showdialog_quit();
     }
+
+
 
 }
 

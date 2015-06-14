@@ -44,6 +44,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="존재하지 않는 이메일 주소입니다"
+        android:id="@+id/signup_textView_email_comment"
+        android:textColor="#ffe65948"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/signup_editText_pwcheck"
+        android:id="@+id/signup_editText_pw2"
         android:layout_gravity="left"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
@@ -83,6 +93,16 @@
         android:adjustViewBounds="false"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="존재하지 않는 이메일 주소입니다"
+        android:id="@+id/signup_textView_pw_comment"
+        android:textColor="#ffe65948"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp" />
 
     <Button
         android:layout_width="match_parent"

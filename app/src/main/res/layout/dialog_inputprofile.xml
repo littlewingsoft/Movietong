@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/thumb_bg"
+    android:gravity="center"
+    android:minHeight="200dp"
+    android:minWidth="100dp"
+    tools:context="lwsoft.android.movietong.dialog_firstconnect">
+
+    <!-- TODO: Update blank fragment layout
+    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+    -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#93feffc8">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="잠깐! 프로필을 입력해 주세요!"
+                android:id="@+id/textView14"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_weight="1"
+                android:textColor="#ffffffff"
+                android:background="#ffe65948" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="프로필 입력시 500포인트 지급!"
+                android:id="@+id/textView18"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_weight="1"
+                android:textColor="#ff1e1e1e" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="추천인 입력시 300포인트 추가지급!"
+                android:id="@+id/textView15"
+                android:gravity="center"
+                android:textColor="#ff1e1e1e"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="입력하러 가시겠습니까?"
+                android:id="@+id/textView17"
+                android:gravity="center"
+                android:textColor="#ff1e1e48"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView12"
+        android:background="@drawable/img_tiling"
+        android:adjustViewBounds="false" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/str_no"
+            android:id="@+id/inputprofile_button_no"
+            android:background="#ff666666"
+            android:textColor="#ffffffff"
+            android:typeface="normal"
+            android:layout_weight="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="22dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/str_yes"
+            android:id="@+id/inputprofile_button_yes"
+            android:background="#ffe65948"
+            android:textColor="#ffffffff"
+            android:typeface="normal"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="22dp" />
+    </LinearLayout>
+
+</LinearLayout>

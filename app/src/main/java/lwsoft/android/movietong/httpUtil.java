@@ -1,6 +1,8 @@
 package lwsoft.android.movietong;
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -24,6 +26,10 @@ import java.util.Vector;
 /**
  * Created by gilbert on 2015-05-07.
  */
+
+
+
+
 public class httpUtil {
     protected static httpUtil inst;
     public static httpUtil getinst(){
@@ -39,10 +45,7 @@ public class httpUtil {
         // TODO Auto-generated method stub
 
         HttpPost request = makeHttpPost( id, pwd, url ) ;//"http://www.shop-wiz.com/android_post.php"
-
-
         //HttpGet request = makeHttpGet( id, pwd, "http://www.shop-wiz.com/android_post.php" ) ;
-
         HttpClient client = new DefaultHttpClient() ;
         ResponseHandler<String> reshandler = new BasicResponseHandler() ;
         String result = client.execute( request, reshandler ) ;
@@ -52,7 +55,6 @@ public class httpUtil {
     //post
     private HttpPost makeHttpPost(String user_id, String user_pwd, String url) {
         // TODO Auto-generated method stub
-
         HttpPost request = new HttpPost( url ) ;
         Vector<NameValuePair> nameValue = new Vector<NameValuePair>() ;
         nameValue.add( new BasicNameValuePair( "user_id", user_id ) ) ;

@@ -20,4 +20,5 @@
     <string name="str_quitmessage">무비통을 종료하시겠습니까?</string>
     <string name="str_yes">예</string>
     <string name="str_no">아니오</string>
+    <string name="str_boxofficetop7">박스오피스 Top7</string>
 </resources>

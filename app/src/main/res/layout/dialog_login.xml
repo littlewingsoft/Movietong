@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:background="@drawable/thumb_bg"
     android:gravity="center"
-    android:minHeight="400dp"
+    android:minHeight="350dp"
     android:minWidth="400dp">
 
     <TextView
@@ -42,6 +42,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="이메일을 입력해주세요"
+        android:id="@+id/login_textView_email_comment"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:textColor="#ffe65948" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,6 +71,16 @@
         android:adjustViewBounds="false"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="비밀번호를 입력해주세요"
+        android:id="@+id/login_textView_pw_comment"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:textColor="#ffe65948" />
 
     <Button
         android:layout_width="match_parent"

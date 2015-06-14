@@ -31,72 +31,17 @@ import java.util.Vector;
 public class intro_login extends ActionBarActivity {
 
     private ProgressDialog mPd;
-
+    public static intro_login inst;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_login);
         getSupportActionBar().hide();
         setbtn();
-        testurl();
+        //testurl();
+        inst = this;
     }
 
-    private class httpTask extends AsyncTask<String,Void,String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-            String result="";
-            try
-            {
-                //http://121.125.68.82/Select_AccountInfo.asp ? account_objectid=
-                Vector<NameValuePair> nameValue = new Vector<NameValuePair>() ;
-                nameValue.add(new BasicNameValuePair("account_objectid", "5a80e08c-5b97-4936-8694-cc6912f2e00c")) ;
-                //nameValue.add( new BasicNameValuePair( "user_pwd", user_pwd ) ) ;
-
-                String my_url = "http://121.125.68.82/Select_AccountInfo.asp"+ "?" + URLEncodedUtils.format(nameValue, null) ;
-                HttpGet request = new HttpGet( my_url ) ;
-                HttpClient client = new DefaultHttpClient() ;
-                ResponseHandler<String> reshandler = new BasicResponseHandler() ;
-
-                result = client.execute(request, reshandler);
-                Log.i("tag_", result);
-                JSONObject jo=new JSONObject(result);
-
-                Log.i("tag_", "usernickname: "+ jo.getString("usernickname") );
-                Log.i("tag_", "userpoint: "+ jo.getInt("userpoint"));
-                Log.i("tag_", "usersex: "+ jo.getString("usersex"));
-                Log.i("tag_", "userage: "+ jo.getInt("userage"));
-                Log.i("tag_", "userarea: "+ jo.getString("userarea"));
-                Log.i("tag_", "userrecommender: "+ jo.getString("userrecommender"));
-
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            if(result != null){
-                Log.d("ASYNC", "result = " + result);
-            }
-
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
-
-
-    }
-    void testurl()  {
-        new httpTask().execute(null,null,null);
-    }
     protected void showdialog_signup(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
@@ -187,7 +132,9 @@ public class intro_login extends ActionBarActivity {
         finish();
     }
 
-    void send_signup( String email, String pw ){
+    void send_signup( String email, String pw, dialog_signup handle_dlg ){
+
+        //http send
 
         if( mPd != null)
             mPd.dismiss();

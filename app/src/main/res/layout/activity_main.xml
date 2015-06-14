@@ -184,7 +184,7 @@
             android:layout_height="wrap_content"
             android:name="lwsoft.android.movietong.fragment_currentmovie"
             android:id="@+id/fragment"
-            tools:layout="@layout/fragment_currentmovie" />
+            tools:layout="@layout/fragment_currentmovie" /><!-- tools:layout="@layout/fragment_currentmovie" -->
     </LinearLayout>
 
 
