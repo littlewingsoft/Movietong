@@ -160,7 +160,7 @@ public class fragment_currentmovie extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 
 
@@ -285,6 +285,7 @@ public class fragment_currentmovie extends Fragment {
 
         }
         container.removeView(item);
+        container.invalidate();
     }
 
     private void setupRootCurrentMovie(LinearLayout rootView, JSONObject jo ) throws  JSONException{
@@ -307,6 +308,7 @@ public class fragment_currentmovie extends Fragment {
 
         }
         container.removeView(item);
+        container.invalidate();
     }
 
     private class task_http_retrive_newmovie extends AsyncTask<String,Void,JSONObject> {

@@ -108,7 +108,9 @@
                 android:textColor="#ff333333"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp" />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <ImageView

@@ -2,76 +2,132 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/thumb_bg"
-    android:gravity="center"
-    android:minHeight="400dp"
-    android:minWidth="400dp">
+    android:gravity="center_vertical|center_horizontal"
+    android:minHeight="400dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/str_login"
-        android:id="@+id/textView16"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="무비통이 추천하는 이벤트"
+        android:id="@+id/textView19"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:gravity="center_vertical|center_horizontal">
+
+        <LinearLayout
+            android:id="@+id/linear_adtype_one"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/adpopup_imageView_one_0"
+                android:src="@drawable/loading"
+                android:scaleType="fitXY"
+                android:layout_centerInParent="true"
+                android:visibility="visible"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp">
+            </com.android.volley.toolbox.NetworkImageView>
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/adpopup_imageView_one_1"
+                android:src="@drawable/loading"
+                android:scaleType="fitXY"
+                android:layout_centerInParent="true"
+                android:visibility="visible"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
+            </com.android.volley.toolbox.NetworkImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_adtype_two"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:gravity="center_vertical|center_horizontal">
+
+                <com.android.volley.toolbox.NetworkImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/adpopup_imageView_two"
+                    android:scaleType="fitXY"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible"
+                    android:background="@drawable/title_logo">
+                </com.android.volley.toolbox.NetworkImageView>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/line_test"
+            android:gravity="center_horizontal">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView12"
-        android:background="@drawable/img_tiling"
-        android:adjustViewBounds="false" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/login_editText_email"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:hint="@string/str_hint_email" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView13"
+        android:id="@+id/imageView19"
         android:background="@drawable/img_tiling"
         android:adjustViewBounds="false"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/login_editText_pw"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:hint="@string/str_hint_pw"
-        android:inputType="textPassword" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView14"
-        android:background="@drawable/img_tiling"
-        android:adjustViewBounds="false"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_login"
-        android:id="@+id/login_button_ok"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#ffe65948"
-        android:textColor="#ffffffff"
-        android:typeface="normal"
-        android:layout_marginBottom="30dp" />
+        android:src="@drawable/img_tiling" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="24시간 동안 보지않기"
+            android:id="@+id/adpopup_checkBox" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_close"
+            android:id="@+id/adpopup_button_ok"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:background="#ffe65948"
+            android:textColor="#ffffffff"
+            android:typeface="normal"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
+
 </LinearLayout>

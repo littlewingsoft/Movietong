@@ -122,7 +122,9 @@ public class MainActivity extends FragmentActivity {
     public void proc_firstconnect(){
         SharedPreferences pref = getSharedPreferences("inputprofile", MODE_PRIVATE);
         if( pref.contains("SecondConnect") == false )
-        showFirstConnectDlg();
+        //showFirstConnectDlg();
+
+        showdialog_adpopup();
     }
 
     public void proc_inputprofile(){
@@ -166,8 +168,6 @@ public class MainActivity extends FragmentActivity {
         DialogFragment newFragment = dialog_inputprofile.newInstance();
         newFragment.setShowsDialog(true);
         newFragment.show(ft, "dialog");
-
-
     }
 
     protected void showdialog_quit(){
@@ -182,6 +182,21 @@ public class MainActivity extends FragmentActivity {
         newFragment.setShowsDialog(true);
         newFragment.show(ft, "dialog");
     }
+
+    protected void showdialog_adpopup(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        //ft.addToBackStack(null);
+
+        DialogFragment newFragment = dialog_adpopup.newInstance();
+        newFragment.setShowsDialog(true);
+        newFragment.show(ft, "dialog");
+
+    }
+
 
     @Override
     public void onBackPressed() {
