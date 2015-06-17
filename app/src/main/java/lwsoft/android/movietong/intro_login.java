@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Vector;
 
 
@@ -44,11 +46,14 @@ public class intro_login extends ActionBarActivity {
 
     protected void showdialog_signup(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
+
+//        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+//        if (prev != null) {
+//            DialogFragment df = (DialogFragment)prev;
+//            df.dismiss();
+//            ft.remove(prev);
+//        }
+//        ft.addToBackStack(null);
 
         DialogFragment newFragment = dialog_signup.newInstance();
         newFragment.setShowsDialog(true);
@@ -56,22 +61,26 @@ public class intro_login extends ActionBarActivity {
     }
 
     protected  void showdialog_login(){
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
+     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+//        if (prev != null) {
+//            DialogFragment df = (DialogFragment)prev;
+//            df.dismiss();
+//            ft.remove(prev);
+//        }
+        //ft.addToBackStack(null);
 
-        DialogFragment newFragment = dialog_login.newInstance();
-        newFragment.setShowsDialog(true);
-        newFragment.show(ft, "dialog");
+     DialogFragment newFragment = dialog_login.newInstance();
+     newFragment.setShowsDialog(true);
+     newFragment.show(ft, "dialog");
     }
 
     protected void showdialog_quit(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {
+            DialogFragment df = (DialogFragment)prev;
+            df.dismiss();
             ft.remove(prev);
         }
         ft.addToBackStack(null);
@@ -126,6 +135,22 @@ public class intro_login extends ActionBarActivity {
     }
 
     public  void goMain(){
+
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments != null) {
+            for (Fragment f : fragments) {
+                //You can perform additional check to remove some (not all) fragments:
+                if (f instanceof DialogFragment) {
+                    FragmentManager manager = f.getFragmentManager();
+                    FragmentTransaction trans = manager.beginTransaction();
+                    trans.remove( f);
+                    trans.commit();
+                }
+            }
+        }
+
+        fragments = getSupportFragmentManager().getFragments();
+
         Intent it = new Intent( this, MainActivity.class);
         it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP  | Intent.FLAG_ACTIVITY_NEW_TASK );
         startActivity(it);
@@ -148,7 +173,7 @@ public class intro_login extends ActionBarActivity {
                 mPd.dismiss();
                 goMain();
             }
-        }     , 1000);
+        }, 1000);
 
 
     }
@@ -167,6 +192,10 @@ public class intro_login extends ActionBarActivity {
                 goMain();
             }
         } , 1000);
+    }
+
+    public void onSignup(View v){
+        Log.i("tag_", "hey: " );
     }
 
     @Override

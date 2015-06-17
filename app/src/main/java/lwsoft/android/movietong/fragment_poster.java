@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +68,9 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
         args.putString("objectid", objectid );
         args.putString("url_poster", url);
         f.setArguments(args);
+
+        Log.d( "fragment_poster", "newInstance: " + objectid );
+
         return f;
     }
 
@@ -81,7 +85,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
         {
             url_poster= b.getString("url_poster") ;
             objectid = b.getString("objectid");
-            //Log.i("tag_", "fragment_poster newInstance : "  + url_poster );
+            Log.d( this.getClass().getName(), "onCreate: "  + objectid );
         }
 
     }
@@ -89,13 +93,13 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("tag_", "onCreateView : "  + url_poster);
+        Log.d( this.getClass().getName(), "onCreateView: "  + objectid );
         View v = inflater.inflate(R.layout.fragment_poster, container, false);
         mImageView = (NetworkImageView)v.findViewById(R.id.imageView);
-        ImageLoader imageLoader = util_volley.getInstance().getImageLoader();
         mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        mImageView.setImageUrl(url_poster, imageLoader);
         v.setOnClickListener(this);
+        ImageLoader imageLoader = new ImageLoader(Volley.newRequestQueue(this.getActivity().getBaseContext()),new LruBitmapCache());
+        mImageView.setImageUrl(url_poster, imageLoader);
         return v;
     }
 
@@ -112,47 +116,41 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
 
         // 뷰에 데이터를 넣는 작업 등을 할 추가할 수 있음
         //download http url, and set image!!!
-        Log.i("tag_", "fragment_poster onActivityCreated: "  );
+        Log.d(this.getClass().getName(), "onActivityCreated: " + objectid);
 
+        //ImageLoader imageLoader = util_volley.getInstance().getImageLoader();
+//        Log.i("tag_", "fragment_poster:"  + url_poster  );
+//        ImageLoader imageLoader = new ImageLoader(Volley.newRequestQueue(this.getActivity().getBaseContext()),new LruBitmapCache());
+//        mImageView.setImageUrl(url_poster, imageLoader);
+//        imageLoader.get(url_poster,
+//                imageLoader.getImageListener( mImageView,
+//                        R.drawable.icon_loading, R.drawable.title_logo  )   );
+//        imageLoader.get( url_poster, new ImageLoader.ImageListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e( "tag_", "Image Load Error: " + error.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(ImageLoader.ImageContainer response, boolean arg1) {
+//                if (response.getBitmap() != null) {
+//                    // load image into imageview
+//                    mImageView.setImageBitmap(response.getBitmap());
+//                }
+//            }
+//        });
+    }
 
-/*
-        imageLoader.get( url_poster, new ImageLoader.ImageListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e( "tag_", "Image Load Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onResponse(ImageLoader.ImageContainer response, boolean arg1) {
-                if (response.getBitmap() != null) {
-                    // load image into imageview
-                    mImageView.setImageBitmap(response.getBitmap());
-                }
-            }
-        });
-        */
-/*
-// If you are using normal ImageView
-        imageLoader.get( url_poster, new ImageLoader.ImageListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("tag_", "Image Load Error: " + error.getMessage());
-            }
-
-            @Override
-            public void onResponse(ImageLoader.ImageContainer response, boolean arg1) {
-                if (response.getBitmap() != null) {
-                    // load image into imageview
-                    mImageView.setImageBitmap(response.getBitmap());
-                }
-            }
-        });*/
-
+    @Override
+    public void onResume(){
+        super.onResume();
 
     }
 
-
-
+    @Override
+    public void onPause(){
+        Log.d("tag_","onPause");
+        super.onPause();
+    }
 }

@@ -107,8 +107,17 @@ public class dialog_login extends DialogFragment {
         ((TextView) thisParentView.findViewById(R.id.login_textView_email_comment)).setText("");
         ((TextView) thisParentView.findViewById(R.id.login_textView_pw_comment)).setText("");
 
-        Button btn_signup=(Button)v.findViewById(R.id.login_button_ok);
+        Button btn_signup=(Button)v.findViewById(R.id.login_button_signup);
         btn_signup.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                mParent.showdialog_signup();
+            }
+        });
+
+        Button btn_login=(Button)v.findViewById(R.id.login_button_ok);
+        btn_login.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -142,57 +151,6 @@ public class dialog_login extends DialogFragment {
         return v;
     }
 
-
-    //deprecated
-    private class httpTask extends AsyncTask<String,Void,String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-            String result="";
-            try
-            {
-                String my_url = "asdf";
-                HttpGet request = new HttpGet( my_url ) ;
-                HttpClient client = new DefaultHttpClient() ;
-                ResponseHandler<String> reshandler = new BasicResponseHandler() ;
-
-                result = client.execute(request, reshandler);
-                Log.i("tag_", result);
-                JSONObject jo=new JSONObject(result);
-
-                Log.i("tag_", "usernickname: "+ jo.getString("usernickname") );
-                Log.i("tag_", "userpoint: "+ jo.getInt("userpoint"));
-                Log.i("tag_", "usersex: "+ jo.getString("usersex"));
-                Log.i("tag_", "userage: "+ jo.getInt("userage"));
-                Log.i("tag_", "userarea: "+ jo.getString("userarea"));
-                Log.i("tag_", "userrecommender: "+ jo.getString("userrecommender"));
-
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            if(result != null){
-                Log.d("ASYNC", "result = " + result);
-            }
-
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
-
-
-    }
-
     void send_login(String e, String p ){
 
         //mPd = ProgressDialog.show( getActivity().getBaseContext() ,"wait" ,"wait wait" );
@@ -212,6 +170,9 @@ public class dialog_login extends DialogFragment {
         String url = "http://www.movietong.co.kr/Select_AccountInfo.asp"+ "?" + URLEncodedUtils.format(nameValue, null) ;
         String[] params={url};
         new httpUtil_get(this.getActivity(), mHandler).execute(params);
+    }
+    public void onSignup(View v){
+        Log.i("tag_", "hey: ");
     }
 
 }

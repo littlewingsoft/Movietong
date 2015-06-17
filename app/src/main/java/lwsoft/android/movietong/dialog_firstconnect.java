@@ -50,7 +50,7 @@ public class dialog_firstconnect extends DialogFragment {
             @Override
             public void onClick(View v) {
                 inst.dismiss();
-                MainActivity.inst.proc_inputprofile();
+
             }
         });
 
@@ -60,6 +60,7 @@ public class dialog_firstconnect extends DialogFragment {
             public void onClick(View v) {
                 inst.dismiss();
                 MainActivity.inst.proc_inputprofile();
+                //MainActivity.inst.proc_adpopup();
             }
         });
 

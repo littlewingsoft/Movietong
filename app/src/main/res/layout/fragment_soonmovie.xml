@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/nowplaying">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="9">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="300dp"
+                    android:visibility="visible">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/ViewPager_poster"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ff00ff00" />
+
+                    <!--
+        <HorizontalScrollView
+           android:layout_width="480dp"
+           android:layout_height="wrap_content"
+           android:id="@+id/horizontalScrollView" >
+
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent"
+               android:id="@+id/poster_horizon_scroll">
+
+               <ImageButton
+                   android:layout_width="400dp"
+                   android:layout_height="300dp"
+                   android:id="@+id/imageButton"
+                   android:src="@drawable/aspect_stillcut_0"
+                   android:scaleType="fitXY"
+                   android:background="@android:color/transparent" />
+
+               <ImageButton
+                   android:layout_width="400dp"
+                   android:layout_height="300dp"
+                   android:id="@+id/imageButton1"
+                   android:src="@drawable/aspect_stillcut_1"
+                   android:scaleType="fitXY"
+                   android:background="@android:color/transparent" />
+
+               <ImageButton
+                   android:layout_width="400dp"
+                   android:layout_height="300dp"
+                   android:id="@+id/imageButton2"
+                   android:src="@drawable/aspect_stillcut_2"
+                   android:scaleType="fitXY"
+                   android:background="@android:color/transparent" />
+
+               <ImageButton
+                   android:layout_width="400dp"
+                   android:layout_height="300dp"
+                   android:id="@+id/imageButton3"
+                   android:src="@drawable/aspect_stillcut_3"
+                   android:scaleType="fitXY"
+                   android:background="@android:color/transparent" />
+
+               <ImageButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="300dp"
+                   android:id="@+id/imageButton4"
+                   android:src="@drawable/aspect_stillcut_4"
+                   android:scaleType="fitXY"
+                   android:background="@android:color/transparent" />
+
+           </LinearLayout>
+
+        </HorizontalScrollView>
+        -->
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButton_right"
+                        android:src="@drawable/slice_right"
+                        android:contentDescription="right"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="fitCenter"
+                        android:background="@android:color/transparent"
+                        android:paddingRight="10dp" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButton_left"
+                        android:src="@drawable/img_flip"
+                        android:contentDescription="left"
+                        android:layout_alignParentRight="false"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:scaleType="fitCenter"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="10dp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list_eventmovie"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    android:contentDescription="event movie">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title_playingevent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:gravity="center_vertical|left"
+                        android:typeface="sans"
+                        android:textSize="25dp"
+                        android:text="@string/str_playingevent"
+                        android:textColor="#fff40061"
+                        android:paddingLeft="10dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView_linedot"
+                        android:background="@drawable/img_tiling"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/root_currentEvent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:contentDescription="root current event">
+
+                        <lwsoft.android.movietong.citem_currentevent
+                            android:id="@+id/currentEvent_item_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_gravity="center_vertical" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list_movie"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    android:contentDescription="playing movie ">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_bg"
+                        android:gravity="center_vertical|left"
+                        android:typeface="sans"
+                        android:textSize="25dp"
+                        android:text="@string/str_soonmoviealllist"
+                        android:textColor="#fff40061"
+                        android:paddingLeft="10dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView17"
+                        android:background="@drawable/img_tiling"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/root_currentMovie"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:contentDescription="root current Movie">
+                        <lwsoft.android.movietong.citem_currentmovie
+                            android:id="@+id/currentMovie_item_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 /**
  * Created by gilbert on 2015-04-07.
  */
-public class fragment_game extends Fragment {
+public class fragment_event extends Fragment {
     /**
      * When creating, retrieve this instance's number from its arguments.
      */
@@ -22,7 +22,7 @@ public class fragment_game extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_game, container, false);
+        View v = inflater.inflate(R.layout.fragment_event, container, false);
 
         return v;
     }

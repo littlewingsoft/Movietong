@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class dialog_inputprofile extends DialogFragment {
@@ -49,6 +50,9 @@ public class dialog_inputprofile extends DialogFragment {
             @Override
             public void onClick(View v) {
                 inst.dismiss();
+                //show profile dialog
+                //write profile save.
+                Toast.makeText(v.getContext(),"profile open!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -57,7 +61,7 @@ public class dialog_inputprofile extends DialogFragment {
             @Override
             public void onClick(View v) {
                 inst.dismiss();
-
+                MainActivity.inst.proc_adpopup();
             }
         });
 

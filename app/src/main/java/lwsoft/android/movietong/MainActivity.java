@@ -1,46 +1,35 @@
 package lwsoft.android.movietong;
 
-import android.app.Dialog;
-
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
 
 //ActionBarActivity
 public class MainActivity extends FragmentActivity {
-
-
+    private fragment_event mFr_event;
+    //private fragment_currentmovie mFr_currentmovie;
     public static MainActivity inst;
     //final int DIALOG_GAME_RESTART = 100;
     //Dialog dialog;
     public  void doResetAllBtn(){
-        Button btn = (Button)findViewById(R.id.tab_button_0);
-        Button btn1 = (Button)findViewById(R.id.tab_button_1);
-        Button btn2 = (Button)findViewById(R.id.tab_button_2);
-        Button btn3 = (Button)findViewById(R.id.tab_button_3);
+        Button tabbtn = (Button)findViewById(R.id.tab_button_0);
+        Button tabbtn1 = (Button)findViewById(R.id.tab_button_1);
+        Button tabbtn2 = (Button)findViewById(R.id.tab_button_2);
+        Button tabbtn3 = (Button)findViewById(R.id.tab_button_3);
 
-        btn.setSelected(false);
-        btn1.setSelected(false);
-        btn2.setSelected(false);
-        btn3.setSelected(false);
+        tabbtn.setSelected(false);
+        tabbtn1.setSelected(false);
+        tabbtn2.setSelected(false);
+        tabbtn3.setSelected(false);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,33 +44,72 @@ public class MainActivity extends FragmentActivity {
         //showDialog();
         inst = this;
 
-        Button btn = (Button)findViewById(R.id.tab_button_0);
-        btn.setOnClickListener(mClickListener);
+        Button tabbtn = (Button)findViewById(R.id.tab_button_0);
+        tabbtn.setOnClickListener(mClickListener);
 
-        Button btn1 = (Button)findViewById(R.id.tab_button_1);
-        btn1.setOnClickListener(mClickListener);
+        Button tabbtn1 = (Button)findViewById(R.id.tab_button_1);
+        tabbtn1.setOnClickListener(mClickListener);
 
-        Button btn2 = (Button)findViewById(R.id.tab_button_2);
-        btn2.setOnClickListener(mClickListener);
+        Button tabbtn2 = (Button)findViewById(R.id.tab_button_2);
+        tabbtn2.setOnClickListener(mClickListener);
 
-        Button btn3 = (Button)findViewById(R.id.tab_button_3);
-        btn3.setOnClickListener(mClickListener);
+        Button tabbtn3 = (Button)findViewById(R.id.tab_button_3);
+        tabbtn3.setOnClickListener(mClickListener);
 
         //must go on
         proc_firstconnect();
-
+        changeFragment(R.id.tab_button_0); // R.id presss
     }
 
+    private void changeFragment(int id){
+
+        Fragment fr = getSupportFragmentManager().findFragmentByTag("mainFrag") ;
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if( fr != null)
+            ft.remove( fr );
+        //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        switch(id){
+            case R.id.tab_button_0:
+            {
+                fr = fragment_currentmovie.newInstance(0);
+                //if( mFr_currentmovie == null)
+            }break;
+
+            case R.id.tab_button_1:{
+                fr = fragment_currentmovie.newInstance(1);
+
+            }break;
+
+            case R.id.tab_button_2:{
+                fr = new fragment_event();
+            }break;
+
+            case R.id.tab_button_3:{
+//                if( mFr_event == null )
+                fr = new fragment_event();
+                //ft.replace(R.id.mainlayout_fragment, fr,"mainFrag");
+                //ft.replace(R.id.mainlayout_fragment, mFr_event,"mainFrag");
+            }
+            break;
+        }
+        //ft.addToBackStack(null);
+        ft.replace(R.id.mainlayout_fragment, fr,"mainFrag");
+        ft.commit();
+
+    }
     Button.OnClickListener mClickListener =  new View.OnClickListener(){
         public void onClick(View v){
+            Log.i("tag_", "id: " + v.getId());
             MainActivity.inst.doResetAllBtn();
             v.setSelected(true);
+            changeFragment(v.getId());
         }
     };
 
     int mStackLevel = 0;
     //test??
-    void showDialog() {
+    void showYesNoDialog() {
         mStackLevel++;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
@@ -122,9 +150,9 @@ public class MainActivity extends FragmentActivity {
     public void proc_firstconnect(){
         SharedPreferences pref = getSharedPreferences("inputprofile", MODE_PRIVATE);
         if( pref.contains("SecondConnect") == false )
-        //showFirstConnectDlg();
+            showFirstConnectDlg();
 
-        showdialog_adpopup();
+
     }
 
     public void proc_inputprofile(){
@@ -137,6 +165,12 @@ public class MainActivity extends FragmentActivity {
 //        editor.putString(pref_mEmail, mEmail);
  //       editor.putString(pref_mPw, mPw);
         //editor.commit();
+    }
+
+    public void proc_adpopup(){
+        SharedPreferences pref = getSharedPreferences("adpopup", MODE_PRIVATE);
+        // if 24 hour check
+        showdialog_adpopup();
     }
 
     public void showFirstConnectDlg(){
@@ -183,7 +217,7 @@ public class MainActivity extends FragmentActivity {
         newFragment.show(ft, "dialog");
     }
 
-    protected void showdialog_adpopup(){
+    public void showdialog_adpopup(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {

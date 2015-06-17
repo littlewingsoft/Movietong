@@ -22,4 +22,7 @@
     <string name="str_no">아니오</string>
     <string name="str_boxofficetop7">박스오피스 Top7</string>
     <string name="str_close">닫기</string>
+    <string name="str_signup">회원가입</string>
+    <string name="str_pleasinputpw">비밀번호를 입력해주세요</string>
+    <string name="str_soonmoviealllist">상영예정작 전체 리스트</string>
 </resources>
