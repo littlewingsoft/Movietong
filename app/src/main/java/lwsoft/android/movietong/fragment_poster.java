@@ -53,7 +53,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
     };*/
 
     public void onClick(View v){
-        Log.i("tag_", "oh click! + "  + objectid);
+        //Log.i("tag_", "oh click! + "  + objectid);
         Toast.makeText(v.getContext(),objectid,Toast.LENGTH_SHORT ).show();
     }
 
@@ -69,7 +69,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
         args.putString("url_poster", url);
         f.setArguments(args);
 
-        Log.d( "fragment_poster", "newInstance: " + objectid );
+       // Log.d( "fragment_poster", "newInstance: " + objectid );
 
         return f;
     }
@@ -85,7 +85,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
         {
             url_poster= b.getString("url_poster") ;
             objectid = b.getString("objectid");
-            Log.d( this.getClass().getName(), "onCreate: "  + objectid );
+            //Log.d( this.getClass().getName(), "onCreate: "  + objectid );
         }
 
     }
@@ -93,7 +93,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d( this.getClass().getName(), "onCreateView: "  + objectid );
+        //Log.d( this.getClass().getName(), "onCreateView: "  + objectid );
         View v = inflater.inflate(R.layout.fragment_poster, container, false);
         mImageView = (NetworkImageView)v.findViewById(R.id.imageView);
         mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -116,7 +116,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
 
         // 뷰에 데이터를 넣는 작업 등을 할 추가할 수 있음
         //download http url, and set image!!!
-        Log.d(this.getClass().getName(), "onActivityCreated: " + objectid);
+        //Log.d(this.getClass().getName(), "onActivityCreated: " + objectid);
 
         //ImageLoader imageLoader = util_volley.getInstance().getImageLoader();
 //        Log.i("tag_", "fragment_poster:"  + url_poster  );
@@ -150,7 +150,7 @@ public class fragment_poster extends Fragment implements View.OnClickListener {
 
     @Override
     public void onPause(){
-        Log.d("tag_","onPause");
+        //Log.d("tag_","onPause");
         super.onPause();
     }
 }

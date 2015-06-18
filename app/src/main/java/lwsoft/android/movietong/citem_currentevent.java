@@ -3,6 +3,7 @@ package lwsoft.android.movietong;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,16 +69,21 @@ public class citem_currentevent extends LinearLayout {
 
     public void setData(JSONObject jo){
         try {
+            //Log.i("event_json", jo.toString() );
             tv_title.setText( jo.getString("movie_title") );
             tv_day.setText(  ""+jo.getInt("movie_viewingtime")  );
             tv_genre.setText( jo.getString("movie_genre") );
             tv_grade.setText("" + jo.getInt("movie_rating"));
             ImageLoader imageLoader = util_volley.getInstance().getImageLoader();
-            iv_poster.setImageUrl( jo.getString("movie_thumbnail"), imageLoader);
+            String url = jo.getString("movie_thumbnail");
+            iv_poster.setImageUrl(url, imageLoader);
+            iv_poster.setDefaultImageResId(R.drawable.facebook_icon);
+            iv_poster.setErrorImageResId(R.drawable.facebook_icon);
+            iv_poster.setDrawingCacheEnabled(true);
 
             //
         }catch (JSONException je){
-            je.printStackTrace();
+            Log.e("tag_", je.getMessage() );
         }
     }
 /*

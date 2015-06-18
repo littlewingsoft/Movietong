@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/lwsoft/android/movietong/citem_currentevent.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/lwsoft/android/movietong/citem_currentmovie.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/lwsoft/android/movietong/dialog_login.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/lwsoft/android/movietong/fragment_soonmovie.java" charset="UTF-8" />
   </component>
 </project>

@@ -24,8 +24,9 @@
                 android:layout_height="match_parent"
                 android:id="@+id/currentEvent_imageView_poster"
                 android:scaleType="fitXY"
-                android:src="@drawable/stillcut_4"
-                android:visibility="visible" />
+                android:src="@drawable/stop_24041"
+                android:visibility="visible"
+                android:background="@drawable/icon_error" />
         </LinearLayout>
 
         <LinearLayout
@@ -39,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="조선명탐정:사라진 놉의 딸"
+                android:text="Title: 몰라"
                 android:id="@+id/currentEvent_textView_title"
                 android:layout_marginLeft="4dp"
                 android:textSize="12dp" />
@@ -48,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="3월 18일 개봉"
+                android:text="개봉일: 몰라"
                 android:id="@+id/currentEvent_textView_day"
                 android:layout_marginLeft="4dp"
                 android:textSize="11dp" />
@@ -57,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="128분 청소년관람불가"
+                android:text="상영시간: 몰라몰라"
                 android:id="@+id/currentEvent_textView_grade"
                 android:layout_marginLeft="4dp"
                 android:textSize="11dp" />
@@ -66,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="장르: 액션,범죄,스릴러"
+                android:text="장르: 몰라몰라"
                 android:id="@+id/currentEvent_textView_genre"
                 android:layout_marginLeft="4dp"
                 android:textSize="11dp" />
